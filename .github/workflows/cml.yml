@@ -12,14 +12,5 @@ jobs:
         run: |
           # Your ML workflow goes here
           pip install -r requirements.txt
-          python FH_Pipeline2.py
-          
-          echo "## Model Metrics" > report.md
-          cat metrics.txt >> report.md
-          
-          echo "\n## Model Performance" >> report.md
-          echo "Model performance metrics are on the plot below." >> report.md
-          
-          cml-publish mindaffectBCI_decoding_curve.png --md >> report.md
-          
-          cml-send-comment report.md
+          python -m mindaffectBCI.online_bci --config_file online_bci_testcase.json
+
